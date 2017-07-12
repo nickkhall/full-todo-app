@@ -1,21 +1,20 @@
 import * as React from "react"
 import * as Redux from "redux"
 import ReactDOM from "react-dom"
+import { Provider } from 'react-redux'
+import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-router'
+
+// Styles
 import css from './client/sass/main.scss'
 
 // Containers
+import App from "./client/containers"
 import Todo from "./client/containers/Todo"
 
-// Styles
-//require('./client/styles/main.scss');
+import store from './client/store'
 
-export default class App extends React.Component {
-	render() {
-		console.log({Todo});
-		return (
-			<Todo className="app" />
-		)
-	}
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+document.getElementById('app'));
