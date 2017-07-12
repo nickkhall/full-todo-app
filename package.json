@@ -21,11 +21,11 @@
     "node-sass": "^4.5.2",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
-    "webpack": "^2.1.0-beta.22",
-    "webpack-dev-server": "2.1.0-beta.10"
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.16.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --colors --hot"
   },
   "repository": {
     "type": "git",
