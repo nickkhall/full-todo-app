@@ -1,9 +1,7 @@
 import * as types from '../actionTypes';
 
 const initialState = {
-  todos: [
-    'testing todo'
-  ]
+  todos: []
 }
 
 const reducer = (state = initialState, action) => {

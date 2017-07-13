@@ -4,6 +4,8 @@
   border:none;
   margin:15px auto;
   max-width:400px;
+  text-align:center;
+    &.no-todos { background:transparent; }
     > li {
       align-items:center;
       background:#fff;
