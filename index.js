@@ -8,7 +8,7 @@ import { Router, Route, IndexRoute, IndexRedirect, browserHistory } from 'react-
 import css from './client/sass/main.scss'
 
 // Containers
-import App from "./client/containers"
+import App from "./client/containers/App"
 import Todo from "./client/containers/Todo"
 
 import store from './client/store'
