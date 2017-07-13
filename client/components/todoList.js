@@ -9,13 +9,14 @@ export default class TodoCompList extends Component {
   renderTodos() {
     return (
       this.props.todos.length < 1
-        ? <h1>You have no todos at the moment.</h1>
+        ? <h1>You have no todos at the moment</h1>
         : this.props.todos.map((v,i) => {
             return (
               <li className="todo-li" key={i}>
                 { v }
                 <span className="delete-todo">
                   <i className="fa fa-trash" onClick={() => this.props.deleteTodo(i)} />
+                  <i className="fa pencil-square-o" />
                 </span>
               </li>
             )

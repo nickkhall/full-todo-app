@@ -8,6 +8,7 @@ export default class TodoComp extends React.Component {
 	onTodoSubmit(e) {
 		let value = this.input.value;
 		this.props.onTodoSubmit(e, value);
+		this.input.value = '';
 	}
 
 	render() {
