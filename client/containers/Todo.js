@@ -18,6 +18,10 @@ class Todo extends Component {
 		this.props.deleteTodo(todo);
 	}
 
+	editTodo(todo) {
+		this.props.editTodo(todo);
+	}
+
 	onTodoSubmit(e, value) {
 		e.preventDefault();
 		this.props.addTodo(value);
@@ -27,7 +31,11 @@ class Todo extends Component {
 		return (
 			<main>
 				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)}/>
-				<TodoCompList todos={this.props.todos} deleteTodo={this.deleteTodo.bind(this)} />
+				<TodoCompList
+					todos={this.props.todos}
+					deleteTodo={this.deleteTodo.bind(this)}
+					editTodo={this.editTodo.bind(this)}
+				/>
 			</main>
 		)
 	}
@@ -42,7 +50,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addTodo: (todo) => {dispatch(addTodo(todo))},
-		deleteTodo: (todo) => {dispatch(deleteTodo(todo))}
+		deleteTodo: (todo) => {dispatch(deleteTodo(todo))},
+		editTodo: (todo) => {dispatch(editTodo(todo))}
 	}
 }
 

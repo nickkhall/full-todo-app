@@ -6,8 +6,20 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
+    // Add Todo
     case types.ADD_TODO:
-      return { todos: state.todos.concat(action.payload) }
+      const newTodo = Object.create({}, {
+        newTodo: {
+          todo: action.payload,
+          completed: false,
+          isEditing: false
+        }
+      });
+
+      console.log({newTodo});
+
+      return { todos: state.todos.concat(newTodo) }
+    // Delete Todo
     case types.DELETE_TODO:
       return {
         todos: state.todos.filter((v,i) => {

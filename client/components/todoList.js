@@ -7,6 +7,7 @@ export default class TodoCompList extends Component {
   }
 
   renderTodos() {
+    console.log('todoList props: ', this.props);
     return (
       this.props.todos.length < 1
         ? <h1>You have no todos at the moment</h1>
@@ -16,7 +17,7 @@ export default class TodoCompList extends Component {
                 { v }
                 <span className="delete-todo">
                   <i className="fa fa-trash" onClick={() => this.props.deleteTodo(i)} />
-                  <i className="fa pencil-square-o" />
+                  <i className="fa pencil-square-o" onClick={() => this.props.editTodo(v)}/>
                 </span>
               </li>
             )
@@ -26,7 +27,7 @@ export default class TodoCompList extends Component {
 
   render() {
     return (
-      <ul className={`todo-list ${this.props.todos.length < 1 ? 'no-todos' : ''}`}>
+      <ul className={`todo-list${this.props.todos.length < 1 ? ' no-todos' : ''}`}>
         { this.renderTodos() }
       </ul>
     )

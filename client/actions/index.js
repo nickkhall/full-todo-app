@@ -10,3 +10,8 @@ export const deleteTodo = (todo) => ({
   type: actionTypes.DELETE_TODO,
   payload: todo
 })
+
+export const editTodo = (todo) => ({
+  type: actionTypes.EDIT_TODO,
+  payload: todo
+})
