@@ -6,8 +6,8 @@ export default class TodoComp extends React.Component {
 	}
 
 	onTodoSubmit(e) {
-		// console.log(this.refs.todoInput);
-		// this.props.onTodoSubmit(e, this.refs.todoInput);
+		let value = this.input.value;
+		this.props.onTodoSubmit(e, value);
 	}
 
 	render() {
@@ -19,7 +19,7 @@ export default class TodoComp extends React.Component {
 						type="text"
 						placeholder="Enter todo.."
 						autoFocus={true}
-						ref={(input) => { this.todoInput = input; }}
+						ref={(ref) => { this.input = ref; }}
 					/>
 					<button type="submit">Add</button>
 				</form>

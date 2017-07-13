@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -6,23 +6,23 @@ import { bindActionCreators } from 'redux'
 import TodoComp from "../components/todo"
 import TodoCompList from '../components/todoList'
 
-// actions
-import * as actions from '../actions'
+// Actions
+import { addTodo } from '../actions'
 
-class Todo extends React.Component {
+class Todo extends Component {
 	constructor(props) {
 		super(props);
 	}
 
 	onTodoSubmit(e, value) {
 		e.preventDefault();
-		console.log({e, value});
+		this.props.addTodo(value);
 	}
 
 	render() {
 		return (
 			<main>
-				<TodoComp onTodoSubmit={this.onTodoSubmit}/>
+				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)}/>
 				<TodoCompList todos={this.props.todos} />
 			</main>
 		)
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addTodo: (todo) => {dispatch(addTodo(todo))},
+		addTodo: (todo) => {dispatch(addTodo(todo))}
 	}
 }
 
