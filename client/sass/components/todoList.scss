@@ -1,0 +1,16 @@
+.todo-list {
+  background:#d6e9ff;
+  border-radius:2px;
+  border:none;
+  margin:15px auto;
+  max-width:400px;
+    > li {
+      align-items:center;
+      color:#000;
+      display:flex;
+      font-family:"Montserrat", Arial, sans-serif;
+      justify-content:space-between;
+      max-width:400px;
+      padding:5px 10px;
+    }
+}

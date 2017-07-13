@@ -10,19 +10,25 @@ export default class TodoCompList extends Component {
 
   }
 
-  // renderTodos() {
-  //   return (
-  //     this.props.todos.map(v => {
-  //       return <li className="todo-li">{ v }</li>
-  //     })
-  //   )
-  // }
+  renderTodos() {
+    return (
+      this.props.todos.map((v,i) => {
+        return (
+          <li className="todo-li" key={i}>
+            { v }
+            <span className="delete-todo">
+              <i className="fa fa-trash" />
+            </span>
+          </li>
+        )
+      })
+    )
+  }
 
   render() {
-    console.log(this.props);
     return (
-      <ul>
-
+      <ul className="todo-list">
+        { this.renderTodos() }
       </ul>
     )
   }
