@@ -2,6 +2,9 @@ import * as React from "react";
 
 export default class TodoComp extends React.Component {
 	render() {
+
+		console.log(`TodoComp props:`, this.props);
+
 		return (
 			<section className="todo-container">
 				<h1>Insert your todo below</h1>

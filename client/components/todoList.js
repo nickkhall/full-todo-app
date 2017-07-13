@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class TodoCompList extends Component {
+export default class TodoCompList extends Component {
   constructor(props) {
     super(props);
   }
@@ -27,20 +27,3 @@ class TodoCompList extends Component {
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todos,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTodo: () => {dispatch(addTodo())},
-  }
-}
-
-export default connect(
-  mapDispatchToProps,
-  mapStateToProps
-)(TodoCompList)
