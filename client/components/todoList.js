@@ -6,10 +6,6 @@ export default class TodoCompList extends Component {
     super(props);
   }
 
-  componentDidMount() {
-
-  }
-
   renderTodos() {
     return (
       this.props.todos.length < 1
@@ -19,7 +15,7 @@ export default class TodoCompList extends Component {
               <li className="todo-li" key={i}>
                 { v }
                 <span className="delete-todo">
-                  <i className="fa fa-trash" />
+                  <i className="fa fa-trash" onClick={() => this.props.deleteTodo(i)} />
                 </span>
               </li>
             )
