@@ -5,3 +5,8 @@ export const addTodo = (todo) => ({
   payload: todo,
   completed: false
 })
+
+export const deleteTodo = (todo) => ({
+  type: actionTypes.DELETE_TODO,
+  payload: todo
+})

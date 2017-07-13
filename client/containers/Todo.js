@@ -7,11 +7,15 @@ import TodoComp from "../components/todo"
 import TodoCompList from '../components/todoList'
 
 // Actions
-import { addTodo } from '../actions'
+import { addTodo, deleteTodo } from '../actions'
 
 class Todo extends Component {
 	constructor(props) {
 		super(props);
+	}
+
+	deleteTodo(todo) {
+		this.props.deleteTodo(todo);
 	}
 
 	onTodoSubmit(e, value) {
@@ -23,7 +27,7 @@ class Todo extends Component {
 		return (
 			<main>
 				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)}/>
-				<TodoCompList todos={this.props.todos} />
+				<TodoCompList todos={this.props.todos} deleteTodo={this.deleteTodo.bind(this)} />
 			</main>
 		)
 	}
@@ -37,7 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addTodo: (todo) => {dispatch(addTodo(todo))}
+		addTodo: (todo) => {dispatch(addTodo(todo))},
+		deleteTodo: (todo) => {dispatch(deleteTodo(todo))}
 	}
 }
 
