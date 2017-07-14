@@ -15,3 +15,11 @@ export const editTodo = (todo) => ({
   type: actionTypes.EDIT_TODO,
   payload: todo
 })
+
+export const changeTodo = (todo, newValue) => ({
+  type: actionTypes.CHANGE_TODO,
+  payload: {
+    todo,
+    newValue
+  }
+})

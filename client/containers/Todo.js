@@ -7,11 +7,15 @@ import TodoComp from "../components/todo"
 import TodoCompList from '../components/todoList'
 
 // Actions
-import { addTodo, deleteTodo } from '../actions'
+import { addTodo, deleteTodo, editTodo, changeTodo } from '../actions'
 
 class Todo extends Component {
 	constructor(props) {
 		super(props);
+	}
+
+	changeTodo(todo, newValue) {
+		this.props.changeTodo(todo, newValue);
 	}
 
 	deleteTodo(todo) {
@@ -35,6 +39,7 @@ class Todo extends Component {
 					todos={this.props.todos}
 					deleteTodo={this.deleteTodo.bind(this)}
 					editTodo={this.editTodo.bind(this)}
+					changeTodo={this.changeTodo.bind(this)}
 				/>
 			</main>
 		)
@@ -51,7 +56,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		addTodo: (todo) => {dispatch(addTodo(todo))},
 		deleteTodo: (todo) => {dispatch(deleteTodo(todo))},
-		editTodo: (todo) => {dispatch(editTodo(todo))}
+		editTodo: (todo) => {dispatch(editTodo(todo))},
+		changeTodo: (todo, newValue) => {dispatch(changeTodo(todo, newValue))}
 	}
 }
 
