@@ -1,9 +1,12 @@
 import * as actionTypes from '../actionTypes'
 
-export const addTodo = (todo) => ({
+export const addTodo = (todo, id) => ({
   type: actionTypes.ADD_TODO,
-  payload: todo,
-  completed: false
+  completed: false,
+  payload: {
+    todo,
+    id
+  }
 })
 
 export const deleteTodo = (todo) => ({

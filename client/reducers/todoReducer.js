@@ -8,10 +8,12 @@ const reducer = (state = initialState, action) => {
   switch(action.type) {
     // Add Todo
     case types.ADD_TODO:
+      console.log('action.payload', action.payload);
       const todo = Object.assign({}, {
-        todo: action.payload,
+        _id: action.payload.id,
+        todo: action.payload.todo,
         completed: false,
-        isEditing: false
+        isEditing: false,
       });
 
       return { todos: state.todos.concat(todo) }
@@ -30,7 +32,6 @@ const reducer = (state = initialState, action) => {
       return {
         todos: state.todos.map((v,i) => {
           if(action.payload === i) {
-            console.log('action.payload equals i');
             v.isEditing = !v.isEditing;
             return v;
            }
@@ -41,7 +42,6 @@ const reducer = (state = initialState, action) => {
     case types.CHANGE_TODO:
     return {
       todos: state.todos.map((v,i) => {
-        console.log({v});
         if(action.payload.todo === i) {
           v.todo = action.payload.newValue;
           return v;

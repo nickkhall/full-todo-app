@@ -12,22 +12,22 @@ export default class TodoCompList extends Component {
         ? <h1>You have no todos at the moment</h1>
         : this.props.todos.map((v,i) => {
             return (!v.isEditing)
-              ? <li className="todo-li" key={i}>
+              ? <li className="todo-li" key={v._id}>
                   { v.todo }
                   <span className="delete-todo">
-                    <i className="fa fa-trash" onClick={() => this.props.deleteTodo(i)} />
-                    <i className="fa fa-pencil-square-o" onClick={() => this.props.editTodo(i)}/>
+                    <i className="fa fa-trash" onClick={() => this.props.deleteTodo(v._id)} />
+                    <i className="fa fa-pencil-square-o" onClick={() => this.props.editTodo(v._id)}/>
                   </span>
                 </li>
-              : <li className="todo-li editing" key={i}>
+              : <li className="todo-li editing" key={v._id}>
                   <input
                     type="text"
                     autoFocus={true}
                     value={v.todo}
                     ref={(ref) =>  { this.input = ref }}
-                    onChange={() => this.props.changeTodo(i, this.input.value)}
+                    onChange={() => this.props.changeTodo(v._id, this.input.value)}
                   />
-                  <i className="fa fa-pencil-square-o editing" onClick={() => this.props.editTodo(i)}/>
+                  <i className="fa fa-pencil-square-o editing" onClick={() => this.props.editTodo(v._id)}/>
                 </li>
           })
     )
