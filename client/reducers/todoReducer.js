@@ -30,10 +30,11 @@ const reducer = (state = initialState, action) => {
     case types.EDIT_TODO:
       return {
         todos: state.todos.map(v => {
-          if(action.payload._id === v._id) {
+          if(action.payload === v._id) {
             v.isEditing = !v.isEditing;
             return v;
            }
+           return v;
         })
       }
 
@@ -41,7 +42,7 @@ const reducer = (state = initialState, action) => {
     case types.CHANGE_TODO:
     return {
       todos: state.todos.map(v => {
-        if(action.payload._id === v._id) {
+        if(action.payload.todo === v._id) {
           v.todo = action.payload.newValue;
           return v;
         }

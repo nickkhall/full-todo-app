@@ -33,7 +33,6 @@ class Todo extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<main>
 				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)}/>
