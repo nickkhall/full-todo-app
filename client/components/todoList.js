@@ -20,13 +20,15 @@ export default class TodoCompList extends Component {
                   </span>
                 </li>
               : <li className="todo-li editing" key={v._id}>
-                  <input
-                    type="text"
-                    autoFocus={true}
-                    value={v.todo}
-                    ref={(ref) =>  { this.input = ref }}
-                    onChange={() => this.props.changeTodo(v._id, this.input.value)}
-                  />
+                  <form onSubmit={e => this.props.changeTodo(v._id, this.input.value, e)}>
+                    <input
+                      type="text"
+                      autoFocus={true}
+                      value={v.todo}
+                      ref={(ref) =>  { this.input = ref }}
+                      onChange={() => this.props.changeTodo(v._id, this.input.value)}
+                    />
+                  </form>
                   <i className="fa fa-pencil-square-o editing" onClick={() => this.props.editTodo(v._id)}/>
                 </li>
           })

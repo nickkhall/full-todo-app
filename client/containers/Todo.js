@@ -14,7 +14,12 @@ class Todo extends Component {
 		super(props);
 	}
 
-	changeTodo(todo, newValue) {
+	changeTodo(todo, newValue, e) {
+		console.log({e});
+		if(e) {
+			e.preventDefault();
+			this.props.editTodo(todo);
+		}
 		this.props.changeTodo(todo, newValue);
 	}
 
