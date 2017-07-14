@@ -12,11 +12,15 @@ export default class TodoCompList extends Component {
         ? <h1>You have no todos at the moment</h1>
         : this.props.todos.map((v,i) => {
             return (!v.isEditing)
-              ? <li className="todo-li" key={v._id}>
+              ? <li
+                  className={`todo-li${v.completed ? ' completed' : ''}`}
+                  key={v._id}
+                  onClick={() => this.props.markCompleted(v._id, v.isEditing)}
+                >
                   { v.todo }
                   <span className="delete-todo">
                     <i className="fa fa-trash" onClick={() => this.props.deleteTodo(v._id)} />
-                    <i className="fa fa-pencil-square-o" onClick={() => this.props.editTodo(v._id)}/>
+                    <i className="fa fa-pencil-square-o" onClick={() => this.props.editTodo(v._id, v.completed)}/>
                   </span>
                 </li>
               : <li className="todo-li editing" key={v._id}>

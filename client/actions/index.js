@@ -26,3 +26,8 @@ export const changeTodo = (todo, newValue) => ({
     newValue
   }
 })
+
+export const markCompleted = (todo) => ({
+  type: actionTypes.MARK_COMPLETED,
+  payload: todo
+})

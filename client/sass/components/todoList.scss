@@ -13,6 +13,7 @@
       align-items:center;
       background:#fff;
       color:#000;
+      cursor:pointer;
       display:flex;
       font-family:"Montserrat", Arial, sans-serif;
       justify-content:space-between;
@@ -23,6 +24,10 @@
           background:#444c55;
           margin:0px;
           padding:0px;
+        }
+        &.completed {
+          background:#32ae85;
+          text-decoration:line-through;
         }
         > span {
           vertical-align:middle;
