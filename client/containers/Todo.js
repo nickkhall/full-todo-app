@@ -7,27 +7,41 @@ import TodoComp from "../components/todo"
 import TodoCompList from '../components/todoList'
 
 // Actions
-import { addTodo, deleteTodo } from '../actions'
+import { addTodo, deleteTodo, editTodo, changeTodo } from '../actions'
 
 class Todo extends Component {
 	constructor(props) {
 		super(props);
 	}
 
+	changeTodo(todo, newValue) {
+		this.props.changeTodo(todo, newValue);
+	}
+
 	deleteTodo(todo) {
 		this.props.deleteTodo(todo);
 	}
 
-	onTodoSubmit(e, value) {
+	editTodo(todo) {
+		this.props.editTodo(todo);
+	}
+
+	onTodoSubmit(e, value, id) {
 		e.preventDefault();
-		this.props.addTodo(value);
+		if(value === '') return;
+		this.props.addTodo(value, id);
 	}
 
 	render() {
 		return (
 			<main>
 				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)}/>
-				<TodoCompList todos={this.props.todos} deleteTodo={this.deleteTodo.bind(this)} />
+				<TodoCompList
+					todos={this.props.todos}
+					deleteTodo={this.deleteTodo.bind(this)}
+					editTodo={this.editTodo.bind(this)}
+					changeTodo={this.changeTodo.bind(this)}
+				/>
 			</main>
 		)
 	}
@@ -41,8 +55,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addTodo: (todo) => {dispatch(addTodo(todo))},
-		deleteTodo: (todo) => {dispatch(deleteTodo(todo))}
+		addTodo: (todo, id) => {dispatch(addTodo(todo, id))},
+		deleteTodo: (todo) => {dispatch(deleteTodo(todo))},
+		editTodo: (todo) => {dispatch(editTodo(todo))},
+		changeTodo: (todo, newValue) => {dispatch(changeTodo(todo, newValue))}
 	}
 }
 

@@ -1,11 +1,14 @@
 .todo-list {
-  background:#d6e9ff;
+  background:transparent;
   border-radius:2px;
   border:none;
   margin:15px auto;
   max-width:400px;
   text-align:center;
-    &.no-todos { background:transparent; }
+    &.no-todos {
+      background:transparent;
+      font-size:12px;
+    }
     > li {
       align-items:center;
       background:#fff;
@@ -13,7 +16,16 @@
       display:flex;
       font-family:"Montserrat", Arial, sans-serif;
       justify-content:space-between;
+      margin:3px 0px;
       max-width:400px;
       padding:5px 10px;
+        &.editing {
+          background:#444c55;
+          margin:0px;
+          padding:0px;
+        }
+        > span {
+          vertical-align:middle;
+        }
     }
 }

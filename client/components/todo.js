@@ -6,8 +6,10 @@ export default class TodoComp extends React.Component {
 	}
 
 	onTodoSubmit(e) {
-		let value = this.input.value;
-		this.props.onTodoSubmit(e, value);
+		const value = this.input.value;
+		const id = Math.floor((1 + Math.random()) * 0x10000);
+		this.props.onTodoSubmit(e, value, id);
+		this.input.value = '';
 	}
 
 	render() {
