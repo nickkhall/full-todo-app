@@ -8,7 +8,6 @@ const reducer = (state = initialState, action) => {
   switch(action.type) {
     // Add Todo
     case types.ADD_TODO:
-      console.log('action.payload', action.payload);
       const todo = Object.assign({}, {
         _id: action.payload.id,
         todo: action.payload.todo,
@@ -21,17 +20,17 @@ const reducer = (state = initialState, action) => {
     // Delete Todo
     case types.DELETE_TODO:
       return {
-        todos: state.todos.filter((v,i) => {
-          if(i === action.payload) return;
-          return v;
+        todos: state.todos.filter(v => {
+          if(v._id !== action.payload) return v;
+          return;
         })
       }
 
     // Edit Todo (Activate Edit Mode)
     case types.EDIT_TODO:
       return {
-        todos: state.todos.map((v,i) => {
-          if(action.payload === i) {
+        todos: state.todos.map(v => {
+          if(action.payload._id === v._id) {
             v.isEditing = !v.isEditing;
             return v;
            }
@@ -41,8 +40,8 @@ const reducer = (state = initialState, action) => {
     // Change Todo (Actually Editing Todo Value)
     case types.CHANGE_TODO:
     return {
-      todos: state.todos.map((v,i) => {
-        if(action.payload.todo === i) {
+      todos: state.todos.map(v => {
+        if(action.payload._id === v._id) {
           v.todo = action.payload.newValue;
           return v;
         }
