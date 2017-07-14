@@ -50,6 +50,18 @@ const reducer = (state = initialState, action) => {
       })
     }
 
+    // Mark Todo As completed
+    case types.MARK_COMPLETED:
+      return {
+        todos: state.todos.map(v => {
+          if(v._id === action.payload) {
+            v.completed = !v.completed;
+            return v;
+          }
+          return v;
+        })
+      }
+
     default:
       return state
   }

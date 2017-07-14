@@ -7,7 +7,7 @@ import TodoComp from "../components/todo"
 import TodoCompList from '../components/todoList'
 
 // Actions
-import { addTodo, deleteTodo, editTodo, changeTodo } from '../actions'
+import { addTodo, deleteTodo, editTodo, changeTodo, markCompleted } from '../actions'
 
 class Todo extends Component {
 	constructor(props) {
@@ -15,7 +15,6 @@ class Todo extends Component {
 	}
 
 	changeTodo(todo, newValue, e) {
-		console.log({e});
 		if(e) {
 			e.preventDefault();
 			this.props.editTodo(todo);
@@ -27,8 +26,14 @@ class Todo extends Component {
 		this.props.deleteTodo(todo);
 	}
 
-	editTodo(todo) {
+	editTodo(todo, isCompleted) {
+		if(isCompleted) return;
 		this.props.editTodo(todo);
+	}
+
+	markCompleted(todo, isEditing) {
+		if(isEditing) return;
+		this.props.markCompleted(todo);
 	}
 
 	onTodoSubmit(e, value, id) {
@@ -46,6 +51,7 @@ class Todo extends Component {
 					deleteTodo={this.deleteTodo.bind(this)}
 					editTodo={this.editTodo.bind(this)}
 					changeTodo={this.changeTodo.bind(this)}
+					markCompleted={this.markCompleted.bind(this)}
 				/>
 			</main>
 		)
@@ -63,7 +69,8 @@ const mapDispatchToProps = (dispatch) => {
 		addTodo: (todo, id) => {dispatch(addTodo(todo, id))},
 		deleteTodo: (todo) => {dispatch(deleteTodo(todo))},
 		editTodo: (todo) => {dispatch(editTodo(todo))},
-		changeTodo: (todo, newValue) => {dispatch(changeTodo(todo, newValue))}
+		changeTodo: (todo, newValue) => {dispatch(changeTodo(todo, newValue))},
+		markCompleted: (todo) => {dispatch(markCompleted(todo))}
 	}
 }
 
