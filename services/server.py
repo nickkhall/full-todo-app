@@ -4,8 +4,6 @@ from flask_pymongo import PyMongo
 from config import *
 from requests import Requests
 from pymongo import MongoClient
-import SimpleHTTPServer
-import SocketServer
 
 app = Flask(__name__, static_folder=ASSETS_FOLDER, template_folder=TEMPLATE_FOLDER)
 app.config.from_object('config')
