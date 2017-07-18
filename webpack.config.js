@@ -2,7 +2,7 @@ module.exports = {
   entry: './index.js',
   output: {
     path: __dirname,
-    publicPath: '/',
+    publicPath: 'services/templates',
     filename: 'bundle.js'
   },
   module: {
@@ -25,5 +25,11 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
+  },
+  devServer: {
+    proxy: {
+      '*': "127.0.0.1:3030"
+    },
+    host: "127.0.0.1"
   }
 };
