@@ -11,6 +11,7 @@ app = Flask(__name__, static_folder=ASSETS_FOLDER, template_folder=TEMPLATE_FOLD
 app.config.from_object('config')
 data = PyMongo(app, config_prefix='MONGO')
 requests = Requests(mongo=data)
+client = MongoClient('localhost', 27017)
 
 # Route all these to the public
 @app.route("/")
@@ -51,43 +52,3 @@ def todos_delete(todo_id):
 
 if __name__ == '__main__':
     app.run(port=3030, debug=True)
-
-
-
-
-
-#
-# from flask import Flask, render_template, url_for
-# import pymongo
-#
-# from config import *
-# from requests import Requests
-# from pymongo import MongoClient
-# import SimpleHTTPServer
-# import SocketServer
-#
-# app = Flask(__name__, static_folder="", template_folder="templates")
-# #app.config.from_object('config')
-# #data = PyMongo(app, config_prefix='MONGO'
-# #requests = Requests(mongo=data)
-#
-# # Route all these to the public
-# @app.route("/")
-# def entry_point():
-#     return render_template('index.html')
-#
-# @app.route("/bundle.js")
-# def bundle():
-#     return render_template('../../bundle.js')
-#
-# if __name__ == '__main__':
-#     app.run(port=3030, debug=True)
-#
-# port = 3030
-#
-# Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
-#
-# httpd = SocketServer.TCPServer(("", port), Handler)
-#
-# print('Serving on port:', port)
-# httpd.serve_forever()
