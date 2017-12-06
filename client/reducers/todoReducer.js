@@ -15,11 +15,15 @@ const reducer = (state = initialState, action) => {
         isEditing: false,
       });
 
-      return { todos: state.todos.concat(todo) }
+      return { 
+        ...state,
+        todos: state.todos.concat(todo)
+      }
 
     // Delete Todo
     case types.DELETE_TODO:
       return {
+        ...state,
         todos: state.todos.filter(v => {
           if(v._id !== action.payload) return v;
           return;
@@ -29,6 +33,7 @@ const reducer = (state = initialState, action) => {
     // Edit Todo (Activate Edit Mode)
     case types.EDIT_TODO:
       return {
+        ...state,
         todos: state.todos.map(v => {
           if(action.payload === v._id) {
             v.isEditing = !v.isEditing;
@@ -41,6 +46,7 @@ const reducer = (state = initialState, action) => {
     // Change Todo (Actually Editing Todo Value)
     case types.CHANGE_TODO:
     return {
+      ...state,
       todos: state.todos.map(v => {
         if(action.payload.todo === v._id) {
           v.todo = action.payload.newValue;
@@ -53,6 +59,7 @@ const reducer = (state = initialState, action) => {
     // Mark Todo As completed
     case types.MARK_COMPLETED:
       return {
+        ...state,
         todos: state.todos.map(v => {
           if(v._id === action.payload) {
             v.completed = !v.completed;
@@ -63,7 +70,7 @@ const reducer = (state = initialState, action) => {
       }
 
     default:
-      return Object.assign({}, state)
+      return { ...state }
   }
 }
 

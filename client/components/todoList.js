@@ -7,37 +7,43 @@ export default class TodoCompList extends Component {
   }
 
   renderTodos() {
-    return (
-      this.props.todos.length < 1
-        ? <h1>You have no todos at the moment</h1>
-        : this.props.todos.map((v,i) => {
-            return (!v.isEditing)
-              ? <li
-                  className={`todo-li${v.completed ? ' completed' : ''}`}
-                  key={v._id}
-                  onClick={() => this.props.markCompleted(v._id, v.isEditing)}
-                >
-                  { v.todo }
-                  <span className="delete-todo">
-                    <i className="fa fa-trash" onClick={() => this.props.deleteTodo(v._id)} />
-                    <i className="fa fa-pencil-square-o" onClick={() => this.props.editTodo(v._id, v.completed)}/>
-                  </span>
-                </li>
-              : <li className="todo-li editing" key={v._id}>
-                  <form onSubmit={e => this.props.changeTodo(v._id, this.input.value, e)}>
-                    <input
-                      type="text"
-                      autoFocus={true}
-                      value={v.todo}
-                      ref={(ref) =>  { this.input = ref }}
-                      onChange={() => this.props.changeTodo(v._id, this.input.value)}
-                    />
-                  </form>
-                  <i className="fa fa-pencil-square-o editing" onClick={() => this.props.editTodo(v._id)}/>
-                </li>
-          })
-    )
-  }
+    if(this.props.todos.length < 1) {
+      return <h1>You have no todos at the moment</h1>
+    }
+
+    return this.props.todos.map((todo,index) => {
+        if(!todo.isEditing) {
+          return (
+            <li
+              className={`todo-li${todo.completed ? ' completed' : ''}`}
+              key={todo._id}
+              onClick={() => this.props.markCompleted(todo._id, todo.isEditing)}
+            >
+              { todo.todo }
+              <span className="delete-todo">
+                <i className="fa fa-trash" onClick={() => this.props.deleteTodo(todo._id)} />
+                <i className="fa fa-pencil-square-o" onClick={() => this.props.editTodo(todo._id, todo.completed)}/>
+              </span>
+            </li>
+          )
+        }
+
+        return (
+          <li className="todo-li editing" key={todo._id}>
+            <form onSubmit={e => this.props.changeTodo(todo._id, this.input.value, e)}>
+              <input
+                type="text"
+                autoFocus={true}
+                value={todo.todo}
+                ref={(ref) =>  { this.input = ref }}
+                onChange={() => this.props.changeTodo(todo._id, this.input.value)}
+              />
+            </form>
+            <i className="fa fa-pencil-square-o editing" onClick={() => this.props.editTodo(todo._id)}/>
+          </li>
+        )
+      });
+    }
 
   render() {
     return (
