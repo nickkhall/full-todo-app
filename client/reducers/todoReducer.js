@@ -8,38 +8,36 @@ const reducer = (state = initialState, action) => {
   switch(action.type) {
     // Add Todo
     case types.ADD_TODO:
-      const todo = Object.assign({}, {
-        _id: action.payload.id,
-        todo: action.payload.todo,
-        completed: false,
-        isEditing: false,
-      });
+      const todo = state.todos.push(
+        Object.assign({}, {
+          _id: action.payload.id,
+          todo: action.payload.todo,
+          completed: false,
+          isEditing: false,
+        })
+      );
 
-      return { 
-        ...state,
-        todos: state.todos.concat(todo)
+      return {
+        ...state
       }
 
     // Delete Todo
     case types.DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter(v => {
-          if(v._id !== action.payload) return v;
-          return;
-        })
+        todos: state.todos.filter(v => v._id !== action.payload)
       }
 
     // Edit Todo (Activate Edit Mode)
     case types.EDIT_TODO:
       return {
         ...state,
-        todos: state.todos.map(v => {
-          if(action.payload === v._id) {
-            v.isEditing = !v.isEditing;
-            return v;
+        todos: state.todos.map(todo => {
+          if(action.payload === todo._id) {
+            todo.isEditing = !todo.isEditing;
+            return todo;
            }
-           return v;
+           return todo;
         })
       }
 
@@ -47,12 +45,12 @@ const reducer = (state = initialState, action) => {
     case types.CHANGE_TODO:
     return {
       ...state,
-      todos: state.todos.map(v => {
-        if(action.payload.todo === v._id) {
-          v.todo = action.payload.newValue;
-          return v;
+      todos: state.todos.map(todo => {
+        if(action.payload.todo === todo._id) {
+          todo.todo = action.payload.newValue;
+          return todo;
         }
-        return v;
+        return todo;
       })
     }
 
@@ -60,12 +58,12 @@ const reducer = (state = initialState, action) => {
     case types.MARK_COMPLETED:
       return {
         ...state,
-        todos: state.todos.map(v => {
-          if(v._id === action.payload) {
-            v.completed = !v.completed;
-            return v;
+        todos: state.todos.map(todo => {
+          if(todo._id === action.payload) {
+            todo.completed = !todo.completed;
+            return todo;
           }
-          return v;
+          return todo;
         })
       }
 

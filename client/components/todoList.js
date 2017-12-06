@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 export default class TodoCompList extends Component {
   constructor(props) {
     super(props);
+
+    this.renderTodos = this.renderTodos.bind(this);
   }
 
   renderTodos() {
