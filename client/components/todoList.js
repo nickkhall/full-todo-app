@@ -13,7 +13,7 @@ export default class TodoCompList extends Component {
       return <h1>You have no todos at the moment</h1>
     }
 
-    return this.props.todos.map((todo,index) => {
+    return this.props.todos.map(todo => {
         if(!todo.isEditing) {
           return (
             <li

@@ -51,13 +51,13 @@ class Todo extends Component {
 	render() {
 		return (
 			<main>
-				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)} />
+				<TodoComp onTodoSubmit={this.onTodoSubmit} />
 				<TodoCompList
 					todos={this.props.todos}
-					deleteTodo={this.deleteTodo.bind(this)}
-					editTodo={this.editTodo.bind(this)}
-					changeTodo={this.changeTodo.bind(this)}
-					markCompleted={this.markCompleted.bind(this)}
+					deleteTodo={this.deleteTodo}
+					editTodo={this.editTodo}
+					changeTodo={this.changeTodo}
+					markCompleted={this.markCompleted}
 				/>
 			</main>
 		);
