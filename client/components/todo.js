@@ -1,8 +1,10 @@
-import * as React from "react";
+import React from "react";
 
 export default class TodoComp extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.onTodoSubmit = this.onTodoSubmit.bind(this);
 	}
 
 	onTodoSubmit(e) {
@@ -16,7 +18,7 @@ export default class TodoComp extends React.Component {
 		return (
 			<section className="todo-container">
 				<h1>Insert your todo below</h1>
-				<form onSubmit={this.onTodoSubmit.bind(this)}>
+				<form onSubmit={this.onTodoSubmit}>
 					<input
 						type="text"
 						placeholder="Enter todo.."

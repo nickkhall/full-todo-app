@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 export default class TodoCompList extends Component {
   constructor(props) {
     super(props);
+
+    this.renderTodos = this.renderTodos.bind(this);
   }
 
   renderTodos() {
@@ -11,7 +13,7 @@ export default class TodoCompList extends Component {
       return <h1>You have no todos at the moment</h1>
     }
 
-    return this.props.todos.map((todo,index) => {
+    return this.props.todos.map(todo => {
         if(!todo.isEditing) {
           return (
             <li

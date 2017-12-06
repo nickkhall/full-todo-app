@@ -1,17 +1,23 @@
-import React, { Component } from "react"
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // Components
-import TodoComp from "../components/todo"
-import TodoCompList from '../components/todoList'
+import TodoComp from "../components/todo";
+import TodoCompList from '../components/todoList';
 
 // Actions
-import { addTodo, deleteTodo, editTodo, changeTodo, markCompleted } from '../actions'
+import { addTodo, deleteTodo, editTodo, changeTodo, markCompleted } from '../actions';
 
 class Todo extends Component {
 	constructor(props) {
 		super(props);
+
+		this.changeTodo = this.changeTodo.bind(this);
+		this.deleteTodo = this.deleteTodo.bind(this);
+		this.editTodo = this.editTodo.bind(this);
+		this.markCompleted = this.markCompleted.bind(this);
+		this.onTodoSubmit = this.onTodoSubmit.bind(this);
 	}
 
 	changeTodo(todo, newValue, e) {
@@ -45,21 +51,22 @@ class Todo extends Component {
 	render() {
 		return (
 			<main>
-				<TodoComp onTodoSubmit={this.onTodoSubmit.bind(this)}/>
+				<TodoComp onTodoSubmit={this.onTodoSubmit} />
 				<TodoCompList
 					todos={this.props.todos}
-					deleteTodo={this.deleteTodo.bind(this)}
-					editTodo={this.editTodo.bind(this)}
-					changeTodo={this.changeTodo.bind(this)}
-					markCompleted={this.markCompleted.bind(this)}
+					deleteTodo={this.deleteTodo}
+					editTodo={this.editTodo}
+					changeTodo={this.changeTodo}
+					markCompleted={this.markCompleted}
 				/>
 			</main>
-		)
+		);
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
+		...state,
 		todos: state.todoReducer.todos
 	}
 }
@@ -67,14 +74,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addTodo: (todo, id) => {dispatch(addTodo(todo, id))},
-		deleteTodo: (todo) => {dispatch(deleteTodo(todo))},
-		editTodo: (todo) => {dispatch(editTodo(todo))},
+		deleteTodo: todo => {dispatch(deleteTodo(todo))},
+		editTodo: todo => {dispatch(editTodo(todo))},
 		changeTodo: (todo, newValue) => {dispatch(changeTodo(todo, newValue))},
-		markCompleted: (todo) => {dispatch(markCompleted(todo))}
+		markCompleted: todo => {dispatch(markCompleted(todo))}
 	}
 }
 
-export default connect(
-	mapStateToProps,
-  mapDispatchToProps
-)(Todo)
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);
