@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     case types.ADD_TODO:
       const todo = state.todos.push(
         Object.assign({}, {
-          _id: action.payload.id,
+          id: action.payload.id,
           todo: action.payload.todo,
           completed: false,
           isEditing: false,
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
     case types.DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter(v => v._id !== action.payload)
+        todos: state.todos.filter(v => v.id !== action.payload)
       }
 
     // Edit Todo (Activate Edit Mode)
@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         todos: state.todos.map(todo => {
-          if(action.payload === todo._id) {
+          if(action.payload === todo.id) {
             todo.isEditing = !todo.isEditing;
             return todo;
            }
@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       todos: state.todos.map(todo => {
-        if(action.payload.todo === todo._id) {
+        if(action.payload.todo === todo.id) {
           todo.todo = action.payload.newValue;
           return todo;
         }
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         todos: state.todos.map(todo => {
-          if(todo._id === action.payload) {
+          if(todo.id === action.payload) {
             todo.completed = !todo.completed;
             return todo;
           }

@@ -29,7 +29,8 @@
     "react/no-find-dom-node": 0,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/href-no-hash": 0,
-    "dependencies/no-cycles": 1
+    "dependencies/no-cycles": 1,
+    "jsx-a11y/no-autofocus": 0
   },
   "globals": {
     "document": true,
