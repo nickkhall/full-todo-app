@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-export default class TodoCompList extends Component {
+export default class TodoCompList extends React.Component {
   constructor(props) {
     super(props);
 
