@@ -24,6 +24,10 @@
           background:#444c55;
           margin:0px;
           padding:0px;
+          form {
+            width: 100%;
+            input[type="text"] { width: 100%; }
+          }
         }
         &.completed {
           background:#32ae85;
